@@ -17,7 +17,7 @@
         
         <img  @click="()=>{userScore++}" class="imgs" src="https://adsk3003.github.io/Rock_paper_scissors/img/scissors.png" alt="">
         
-
+        <!--<button @click="logOut" >Log out</button>-->
     </div>
 </template>
 
@@ -27,13 +27,20 @@ import{mapState} from 'pinia'
     export default {
         name:"GamePlayer",
         computed: {
-            ...mapState(useMainStore, ['doubleCounter'],['isCounterEven']),
+            ...mapState(useMainStore, ['doubleCounter'],['isCounterEven'],['logOut']),
 
             userScoreUpdated (){
-                return this.userScore*3;
-            },
-            compScore(){
                 return this.userScore*2;
+                //if (this.userScore = 20){
+                    //console.log("You have won");
+                //}
+            },
+            
+            compScore(){
+                return this.userScore*1;
+                //if (this.userScore = 15){
+                   // return 'You won'
+                //}
             }
         },
         data() {

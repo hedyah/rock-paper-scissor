@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from 'axios';
 import router from "@/router";
+import cookies from 'vue-cookies'
 
 export const useMainStore = defineStore ('main', {
     state: () => {
@@ -24,16 +25,20 @@ export const useMainStore = defineStore ('main', {
                 }
             }).then((response)=>{
                 console.log(response);
+                cookies.set('session',response.data.token);
+                cookies.get('session');
                 router.push({path: '/game'})
                 
             }).catch((error)=>{
                 console.log(error);
             })
         },
-
-        startGame (){
-
+        logOut(){
+            cookies.remove('session')
         }
+
+        
+        
 
     
 
